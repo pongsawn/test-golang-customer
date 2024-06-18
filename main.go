@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	fmt.Printf(`START SERVER`)
+	fmt.Println(`START SERVER`)
 
 	//สร้าง database customers
 	db := config.DatabaseConnection()
@@ -33,8 +33,10 @@ func main() {
 
 	//router ของ CRUD
 	routes := router.NewRouter(customerController)
-	str := sqlx.Map{}
-	fmt.Printf(`%v`, str)
+	str := sqlx.Map{
+		`name`: `potae`,
+	}
+	fmt.Printf(`%v`, str.String(`name`))
 	//run server
 	server := http.Server{Addr: "localhost:8888", Handler: routes}
 	err := server.ListenAndServe()
