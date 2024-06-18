@@ -9,6 +9,7 @@ import (
 	"test-golang/repository"
 	"test-golang/router"
 	"test-golang/service"
+	"test-golang/sqlx"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -32,7 +33,8 @@ func main() {
 
 	//router ของ CRUD
 	routes := router.NewRouter(customerController)
-
+	str := sqlx.Map{}
+	fmt.Printf(`%v`, str)
 	//run server
 	server := http.Server{Addr: "localhost:8888", Handler: routes}
 	err := server.ListenAndServe()
